@@ -1,0 +1,218 @@
+-- Criando o hub principal
+local SukeHub = {}
+
+-- Criando tela de carregamento
+local LoadingScreen = Instance.new("ScreenGui")
+LoadingScreen.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local LoadingFrame = Instance.new("Frame")
+LoadingFrame.Size = UDim2.new(0, 100, 0, 100)
+LoadingFrame.Position = UDim2.new(0.5, -50, 0.5, -50)
+LoadingFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+LoadingFrame.Parent = LoadingScreen
+LoadingFrame.ClipsDescendants = true
+LoadingFrame.BorderSizePixel = 0
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(1, 0) -- Deixa redondo
+UICorner.Parent = LoadingFrame
+
+local LoadingText = Instance.new("TextLabel")
+LoadingText.Size = UDim2.new(1, 0, 1, 0)
+LoadingText.Text = "Suke Hub"
+LoadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoadingText.Font = Enum.Font.SourceSans
+LoadingText.TextSize = 14
+LoadingText.BackgroundTransparency = 1
+LoadingText.Parent = LoadingFrame
+
+wait(3)  -- Simula um tempo de carregamento
+LoadingScreen:Destroy()
+
+-- Criando a interface do hub
+local HubGui = Instance.new("ScreenGui")
+HubGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 500, 0, 400)
+MainFrame.Position = UDim2.new(0.5, -250, 0.5, -200)
+MainFrame.BackgroundTransparency = 0.5 -- Transparente
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Draggable = true -- Permite arrastar o hub
+MainFrame.Parent = HubGui
+
+local UICornerMain = Instance.new("UICorner")
+UICornerMain.CornerRadius = UDim.new(0.1, 0) -- Bordas arredondadas
+UICornerMain.Parent = MainFrame
+
+-- Criando botão de minimizar
+local MinimizeButton = Instance.new("TextButton")
+MinimizeButton.Size = UDim2.new(0, 50, 0, 30)
+MinimizeButton.Position = UDim2.new(1, -100, 0, 10)
+MinimizeButton.Text = "-"
+MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MinimizeButton.BackgroundTransparency = 0.5 -- Transparente
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+MinimizeButton.Parent = MainFrame
+
+-- Criando botão de fechar
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 50, 0, 30)
+CloseButton.Position = UDim2.new(1, -50, 0, 10)
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextSize = 18
+CloseButton.BackgroundTransparency = 0.5 -- Transparente
+CloseButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+CloseButton.Parent = MainFrame
+
+-- Criando a lista de categorias de jogos
+local CategoryFrame = Instance.new("Frame")
+CategoryFrame.Size = UDim2.new(0, 150, 1, -50)
+CategoryFrame.Position = UDim2.new(0, 0, 0, 50)
+CategoryFrame.BackgroundTransparency = 0.5 -- Transparente
+CategoryFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+CategoryFrame.Parent = MainFrame
+
+local UICornerCategory = Instance.new("UICorner")
+UICornerCategory.CornerRadius = UDim.new(0.1, 0)
+UICornerCategory.Parent = CategoryFrame
+
+local GamesLabel = Instance.new("TextButton")
+GamesLabel.Size = UDim2.new(1, 0, 0, 30)
+GamesLabel.Text = "Arise Crossover"
+GamesLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+GamesLabel.Font = Enum.Font.SourceSans
+GamesLabel.TextSize = 20
+GamesLabel.BackgroundTransparency = 1 -- Transparente
+GamesLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+GamesLabel.Parent = CategoryFrame
+
+local ContentFrame = Instance.new("Frame")
+ContentFrame.Size = UDim2.new(1, -150, 1, -50)
+ContentFrame.Position = UDim2.new(0, 150, 0, 50)
+ContentFrame.BackgroundTransparency = 1 -- Transparente
+ContentFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+
+local SettingsButton = Instance.new("TextButton")
+SettingsButton.Size = UDim2.new(1, 0, 0, 30)
+SettingsButton.Position = UDim2.new(0, 0, 1, -40)
+SettingsButton.Text = "Configurações"
+SettingsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+SettingsButton.BackgroundTransparency = 1 -- Transparente
+SettingsButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+SettingsButton.Parent = CategoryFrame
+
+local UICornerSettings = Instance.new("UICorner")
+UICornerSettings.CornerRadius = UDim.new(0.1, 0)
+UICornerSettings.Parent = SettingsButton
+ContentFrame.Parent = MainFrame
+ContentFrame.Visible = false
+
+local SkyHubButton = Instance.new("TextButton")
+SkyHubButton.Size = UDim2.new(1, 0, 0, 30)
+SkyHubButton.Text = "Sky Hub"
+SkyHubButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+SkyHubButton.BackgroundTransparency = 1 -- Transparente
+SkyHubButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+SkyHubButton.Parent = ContentFrame
+
+SkyHubButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/SKOIXLL/SKYLOLAND/refs/heads/main/Load.lua"))()
+end)
+
+GamesLabel.MouseButton1Click:Connect(function()
+    if ContentFrame.Visible then
+        ContentFrame:TweenPosition(UDim2.new(0, 150, 0, 50), "Out", "Quad", 0.5, true, function()
+            ContentFrame.Visible = false
+        end)
+    else
+        ContentFrame.Visible = true
+        ContentFrame:TweenPosition(UDim2.new(0, 150, 0, 50), "Out", "Quad", 0.5, true)
+    end
+end)
+
+MinimizeButton.BackgroundTransparency = 1 -- Transparente
+CloseButton.BackgroundTransparency = 1 -- Transparente
+
+-- Adicionando o nome do Hub
+local HubName = Instance.new("TextLabel")
+HubName.Size = UDim2.new(1, 0, 0, 50)
+HubName.Position = UDim2.new(0, 0, 0, 0)
+HubName.Text = "Suke Hub"
+HubName.TextColor3 = Color3.fromRGB(255, 255, 255)
+HubName.Font = Enum.Font.SourceSansBold
+HubName.TextSize = 24
+HubName.BackgroundTransparency = 1
+HubName.Parent = MainFrame
+
+SettingsButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+CategoryFrame.BackgroundTransparency = 1 -- Transparente
+SettingsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+SettingsButton.Parent = CategoryFrame
+
+local UICornerSettings = Instance.new("UICorner")
+UICornerSettings.CornerRadius = UDim.new(0.1, 0)
+UICornerSettings.Parent = SettingsButton
+
+-- Exibir o avatar do jogador
+local PlayerAvatar = Instance.new("ImageLabel")
+PlayerAvatar.Size = UDim2.new(0, 100, 0, 100)
+PlayerAvatar.Position = UDim2.new(1, -120, 0, 50)
+PlayerAvatar.BackgroundTransparency = 1
+PlayerAvatar.Parent = MainFrame
+
+local player = game.Players.LocalPlayer
+PlayerAvatar.Image = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=100&height=100&format=png"
+
+-- Função para minimizar e maximizar com a tecla Ctrl
+local UIS = game:GetService("UserInputService")
+UIS.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.LeftControl then
+        MainFrame.Visible = not MainFrame.Visible
+    end
+end)
+
+-- Funções de interação
+local minimized = false
+MinimizeButton.MouseButton1Click:Connect(function()
+    minimized = not minimized
+    MainFrame.Visible = not minimized
+end)
+
+CloseButton.MouseButton1Click:Connect(function()
+    HubGui:Destroy()
+end)
+
+-- Adicionando botão Etherbyte
+local EtherbyteButton = Instance.new("TextButton")
+EtherbyteButton.Size = UDim2.new(1, 0, 0, 30)
+EtherbyteButton.Position = UDim2.new(0, 0, 0, 40) -- Posiciona abaixo do Sky Hub
+EtherbyteButton.Text = "EtherByte Hub"
+EtherbyteButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+EtherbyteButton.BackgroundTransparency = 1 -- Transparente
+EtherbyteButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+EtherbyteButton.Parent = ContentFrame
+
+EtherbyteButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EtherbyteHub/Arise-crossover-main-script/refs/heads/main/Protected_6136626225563520.txt", true))()
+end)
+
+-- Adicionando botão Alice Hub
+local AliceHubButton = Instance.new("TextButton")
+AliceHubButton.Size = UDim2.new(1, 0, 0, 30)
+AliceHubButton.Position = UDim2.new(0, 0, 0, 70) -- Posiciona abaixo do Etherbyte Hub
+AliceHubButton.Text = "Alice Hub"
+AliceHubButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+AliceHubButton.BackgroundTransparency = 1 -- Transparente
+AliceHubButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+AliceHubButton.Parent = ContentFrame
+
+AliceHubButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/alicee-idk/arisecrossover/refs/heads/main/README.md"))()
+end)
+
+return SukeHub
