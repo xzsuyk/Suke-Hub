@@ -1,6 +1,5 @@
--- Criando o hub principal
-local SukeHub = {}
 
+-- Criando o hub principal
 -- Criando tela de carregamento
 local LoadingScreen = Instance.new("ScreenGui")
 LoadingScreen.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -112,29 +111,6 @@ UICornerSettings.Parent = SettingsButton
 ContentFrame.Parent = MainFrame
 ContentFrame.Visible = false
 
-local SkyHubButton = Instance.new("TextButton")
-SkyHubButton.Size = UDim2.new(1, 0, 0, 30)
-SkyHubButton.Text = "Sky Hub"
-SkyHubButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-SkyHubButton.BackgroundTransparency = 1 -- Transparente
-SkyHubButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
-SkyHubButton.Parent = ContentFrame
-
-SkyHubButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/SKOIXLL/SKYLOLAND/refs/heads/main/Load.lua"))()
-end)
-
-GamesLabel.MouseButton1Click:Connect(function()
-    if ContentFrame.Visible then
-        ContentFrame:TweenPosition(UDim2.new(0, 150, 0, 50), "Out", "Quad", 0.5, true, function()
-            ContentFrame.Visible = false
-        end)
-    else
-        ContentFrame.Visible = true
-        ContentFrame:TweenPosition(UDim2.new(0, 150, 0, 50), "Out", "Quad", 0.5, true)
-    end
-end)
-
 MinimizeButton.BackgroundTransparency = 1 -- Transparente
 CloseButton.BackgroundTransparency = 1 -- Transparente
 
@@ -158,16 +134,6 @@ local UICornerSettings = Instance.new("UICorner")
 UICornerSettings.CornerRadius = UDim.new(0.1, 0)
 UICornerSettings.Parent = SettingsButton
 
--- Exibir o avatar do jogador
-local PlayerAvatar = Instance.new("ImageLabel")
-PlayerAvatar.Size = UDim2.new(0, 100, 0, 100)
-PlayerAvatar.Position = UDim2.new(1, -120, 0, 50)
-PlayerAvatar.BackgroundTransparency = 1
-PlayerAvatar.Parent = MainFrame
-
-local player = game.Players.LocalPlayer
-PlayerAvatar.Image = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=100&height=100&format=png"
-
 -- Função para minimizar e maximizar com a tecla Ctrl
 local UIS = game:GetService("UserInputService")
 UIS.InputBegan:Connect(function(input)
@@ -190,7 +156,7 @@ end)
 -- Adicionando botão Etherbyte
 local EtherbyteButton = Instance.new("TextButton")
 EtherbyteButton.Size = UDim2.new(1, 0, 0, 30)
-EtherbyteButton.Position = UDim2.new(0, 0, 0, 40) -- Posiciona abaixo do Sky Hub
+EtherbyteButton.Position = UDim2.new(0, 0, 0, 50) -- Posiciona abaixo do Sky Hub
 EtherbyteButton.Text = "EtherByte Hub"
 EtherbyteButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 EtherbyteButton.BackgroundTransparency = 1 -- Transparente
@@ -204,7 +170,7 @@ end)
 -- Adicionando botão Alice Hub
 local AliceHubButton = Instance.new("TextButton")
 AliceHubButton.Size = UDim2.new(1, 0, 0, 30)
-AliceHubButton.Position = UDim2.new(0, 0, 0, 70) -- Posiciona abaixo do Etherbyte Hub
+AliceHubButton.Position = UDim2.new(0, 0, 0, 90) -- Posiciona abaixo do Etherbyte Hub
 AliceHubButton.Text = "Alice Hub"
 AliceHubButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 AliceHubButton.BackgroundTransparency = 1 -- Transparente
@@ -213,6 +179,32 @@ AliceHubButton.Parent = ContentFrame
 
 AliceHubButton.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/alicee-idk/arisecrossover/refs/heads/main/README.md"))()
+end)
+
+-- Adicionando botão Sky Hub
+local SkyHubButton = Instance.new("TextButton")
+SkyHubButton.Size = UDim2.new(1, 0, 0, 30)
+SkyHubButton.Text = "Sky Hub"
+SkyHubButton.Position = UDim2.new(0, 0, 0, 10) -- Posiciona Acima de todos
+SkyHubButton.Text = "Sky Hub"
+SkyHubButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+SkyHubButton.BackgroundTransparency = 1 -- Transparente
+SkyHubButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cinza escuro
+SkyHubButton.Parent = ContentFrame
+
+SkyHubButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/SKOIXLL/SKYLOLAND/refs/heads/main/Load.lua"))()
+end)
+
+GamesLabel.MouseButton1Click:Connect(function()
+    if ContentFrame.Visible then
+        ContentFrame:TweenPosition(UDim2.new(0, 150, 0, 50), "Out", "Quad", 0.5, true, function()
+            ContentFrame.Visible = false
+        end)
+    else
+        ContentFrame.Visible = true
+        ContentFrame:TweenPosition(UDim2.new(0, 150, 0, 50), "Out", "Quad", 0.5, true)
+    end
 end)
 
 return SukeHub
